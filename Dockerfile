@@ -1,6 +1,6 @@
-FROM python:3.6-slim
+FROM python:3.8
 
-ARG AIRFLOW_VERSION=2.0.0
+ARG AIRFLOW_VERSION=2.7.3
 ARG AIRFLOW_HOME=/usr/local/airflow
 ENV SLUGIFY_USES_TEXT_UNIDECODE=yes
 
@@ -36,7 +36,7 @@ RUN set -ex \
 RUN pip install apache-airflow[http]==${AIRFLOW_VERSION}
 ADD . /
 RUN pip install -e .
-
+# RUN pip install dag-factory
 RUN chmod +x /scripts/entrypoint.sh
 
 ENTRYPOINT ["/scripts/entrypoint.sh"]
